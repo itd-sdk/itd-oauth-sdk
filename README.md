@@ -16,7 +16,7 @@ client = Client(
     client_secret='Секрет'
 )
 ```
-Получить свой токен можно на [официальном портале](dev.итд.tech) (если сайт не работает, можно обратиться в [ЛС канала @itdStatus](t.me/itdStatus?direct)). Также можно использовать [тестовые токены](https://github.com/itdPlus/ITD-OAuth-SDK/blob/main/docs/DEV-TOKENS.md).
+Получить свой токен можно на [официальном портале](https://dev.итд.tech) (если сайт не работает, можно обратиться в [ЛС канала @itdStatus](https://t.me/itdStatus?direct)). Также можно использовать [тестовые токены](https://github.com/itdPlus/ITD-OAuth-SDK/blob/main/docs/DEV-TOKENS.md).
 
 ### Получение ссылки на авторизацию
 ```py
