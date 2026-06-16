@@ -34,7 +34,7 @@ access_token = res['access_token']
 refresh_token = res['refresh_token']
 access_token_expires_in = res['expires_in']
 ```
-Код приходит в каллбэке (/auth/callback?code=xxx).
+Код приходит в каллбэке (`/auth/callback?code=xxx`).
 
 ### Обновить `access_token`
 ```py
@@ -99,7 +99,7 @@ from fastapi import Depends
 
 @app.get('me')
 def api_get_me(token: dict = Depends(client.dependency)):
-    return token # {"sid":"08d7ef36-5914-45d5-95b2-f349d401fa48","clientId":"itd-oauth-dev","scope":["posts"],"sub":"587167e9-25ad-4948-afc0-2ee5bc9097ea","iat":1781596719,"exp":1781597919}
+    return token  # {"sid":"08d7ef36-5914-45d5-95b2-f349d401fa48","clientId":"itd-oauth-dev","scope":["posts"],"sub":"587167e9-25ad-4948-afc0-2ee5bc9097ea","iat":1781596719,"exp":1781597919}
 ```
 Добавляет данные пользователя (расшифрованный `access_token`) в контекст роута.
 
@@ -115,3 +115,23 @@ ITDClient(config=client.sdk_config)
 ```bash
 uv add itd-oauth-sdk[itd-sdk]
 ```
+
+## Scope
+Scope определяет к каким данным и действиям получает доступ приложение.  
+Пользователь видит список запрошенных прав на странице подтверждения и может отклонить запрос.
+
+## Доступные варианты
+
+| Scope            | Разрешения                                                      |
+|------------------|-----------------------------------------------------------------|
+| `users`          | Просомотр и изменение профиля, подписки, блокировки             |
+| `posts`          | Чтение, создание, изменение постов, лайки, репосты, комментарии |
+| `comments`       | Создание, изменение и удаление комментариев, лайки              |
+| `notifications`  | Просмотр уведомлений                                            |
+| `files`          | Загрузка файлов                                                 |
+| `reports`        | Отправка жалоб на контент                                       |
+| `hashtags`       | Получние списка хэштэгов, поиск и получение постов по хэштэгу   |
+| `search`         | Поиск пользователей и хэштэгов                                  |
+| `subscription`   | Просмотр статуса подписки                                       |
+| `verification`   | Просмотр статуса верификации аккаунта                           |
+| `platform`       | Просмотр ченжлога и актуальных версий приложений                |
