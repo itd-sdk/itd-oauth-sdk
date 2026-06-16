@@ -143,8 +143,7 @@ class Client:
 
     if FASTAPI:
 
-        @property
-        def router(self, prefix: str = "/api/auth"):
+        def get_router(self, prefix: str = "/api/auth"):
             from fastapi import APIRouter
 
             router = APIRouter(prefix=prefix)
@@ -165,8 +164,7 @@ class Client:
 
     else:
 
-        @property
-        def router(self):
+        def get_router(self, prefix: str = "/api/auth"):
             raise ImportError(
                 "fastapi is required for client.router. Install via: uv add itd-oauth-sdk[fastapi]"
             )
