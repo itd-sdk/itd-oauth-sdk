@@ -54,13 +54,18 @@ class Client:
 
         @property
         def sdk_config(self):
-            return ITDConfig(url=self.url)
+            return ITDConfig(
+                url=self.url, refresh_token_cookie_name="itd_oauth_refresh"
+            )
 
         def patch_config(self, config: "ITDConfig"):
             config.url = self.url
+            config.refresh_token_cookie_name = "itd_oauth_refresh"
+
             return config
     else:
 
+        @property
         def sdk_config(self):
             raise ImportError(
                 "itd-sdk is required for client.sdk_config. Install via: uv add itd-oauth-sdk[itd-sdk]"

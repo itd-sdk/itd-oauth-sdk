@@ -142,6 +142,7 @@ name = "itd-oauth-sdk"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "itd-sdk" },
     { name = "requests" },
 ]
 
@@ -162,7 +163,8 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", marker = "extra == 'fastapi'", specifier = ">=0.137.1" },
-    { name = "itd-sdk", marker = "extra == 'itd-sdk'", specifier = ">=2.5.1" },
+    { name = "itd-sdk", git = "https://github.com/itd-sdk/itd-sdk" },
+    { name = "itd-sdk", marker = "extra == 'itd-sdk'", git = "https://github.com/itd-sdk/itd-sdk" },
     { name = "requests", specifier = ">=2.34.2" },
     { name = "uvicorn", marker = "extra == 'fastapi'", specifier = ">=0.49.0" },
 ]
@@ -174,17 +176,13 @@ dev = [{ name = "python-dotenv", specifier = ">=1.2.2" }]
 [[package]]
 name = "itd-sdk"
 version = "2.5.1"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/itd-sdk/itd-sdk#7397fef93656457662110de292037bfcc5cf73eb" }
 dependencies = [
     { name = "lxml" },
     { name = "pydantic" },
     { name = "requests" },
     { name = "sseclient-py" },
     { name = "telegramify-markdown" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/fe/0d/a965d8071fdcfda932935b1ad6e4eaeb40fba120a290a0a8eecf8c29b696/itd_sdk-2.5.1.tar.gz", hash = "sha256:746d98fa2c8e361959e3615fff499e751e23e2c21028d515189a81a1ebda7e53", size = 45051, upload-time = "2026-06-15T14:00:46.068Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e5/8e/64fe95cc28635aebf7362cb1c23a8cb591b3761097688b7188455d8dbf81/itd_sdk-2.5.1-py3-none-any.whl", hash = "sha256:30a13f44020e0f88866602e9ccedcb0e9d7ceb96d32fce6c7810722a7c8c0376", size = 61092, upload-time = "2026-06-15T14:00:43.733Z" },
 ]
 
 [[package]]
