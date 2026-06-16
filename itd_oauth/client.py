@@ -143,25 +143,29 @@ class Client:
 
     if FASTAPI:
 
-        def router(self):
+        @property
+        def router(self, prefix: str = "/api/auth"):
             from fastapi import APIRouter
 
-            router = APIRouter()
+            router = APIRouter(prefix=prefix)
 
-            @router.post("/api/auth")
+            @router.post("")
             def api_post_auth(code: str, response: Response):
                 res = self.exchange_code(code)
                 response.set_cookie("itd_oauth_refresh", res["refresh_token"])
                 return {"token": res["access_token"]}
 
-        def dependency(self, access_token: str = Header()):
+            return router
+
+        def dependency(self, authorization: str = Header()):
             try:
-                return decode_jwt_payload(access_token)
+                return decode_jwt_payload(authorization.replace("Bearer ", ""))
             except Exception:
                 raise HTTPException(detail="invalid access token", status_code=400)
 
     else:
 
+        @property
         def router(self):
             raise ImportError(
                 "fastapi is required for client.router. Install via: uv add itd-oauth-sdk[fastapi]"
